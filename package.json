@@ -14,7 +14,7 @@
     }
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node ./bin/index.js convert -s ./example/internationalization.xlsx -o ./example/result",
     "watch": "parcel watch",
     "build": "parcel build"
   },
