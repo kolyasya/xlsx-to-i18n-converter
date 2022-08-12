@@ -14964,8 +14964,8 @@ exports.default = {
 
 },{"xlsx":"kF8yv","./helpers":"kLZOj","./workbook":"1a8lm"}],"kF8yv":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
-var process = require("process");
 var global = arguments[3];
+var process = require("process");
 /*! xlsx.js (C) 2013-present SheetJS -- http://sheetjs.com */ /* vim: set ts=2: */ /*exported XLSX */ /*global global, exports, module, require:false, process:false, Buffer:false, ArrayBuffer:false */ var XLSX = {};
 function make_xlsx_lib(XLSX) {
     XLSX.version = "0.17.5";
