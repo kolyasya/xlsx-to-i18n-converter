@@ -2,8 +2,17 @@
   "name": "xlsx-to-i18n-converter",
   "version": "0.0.1",
   "description": "Tool which converts XLSX document into a set of JSON files for i18n package",
-  "main": "dist/index.js",
-  "source": "src/index.js",
+  "targets": {
+    "default": {
+      "source": "./src/index.js",
+      "distDir": "./dist"
+    },
+    "bin": {
+      "source": "./src/bin/index.js",
+      "distDir": "./bin",
+      "context": "node"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "parcel watch",
@@ -26,6 +35,15 @@
   },
   "homepage": "https://github.com/kolyasya/xlsx-to-i18n-converter#readme",
   "devDependencies": {
-    "parcel": "^2.7.0"
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
+    "parcel": "^2.7.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "commander": "^9.4.0",
+    "lodash": "^4.17.21",
+    "node-xlsx": "^0.21.0"
   }
 }
