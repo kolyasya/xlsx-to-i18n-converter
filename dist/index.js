@@ -14964,8 +14964,8 @@ exports.default = {
 
 },{"xlsx":"kF8yv","./helpers":"kLZOj","./workbook":"1a8lm"}],"kF8yv":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 /*! xlsx.js (C) 2013-present SheetJS -- http://sheetjs.com */ /* vim: set ts=2: */ /*exported XLSX */ /*global global, exports, module, require:false, process:false, Buffer:false, ArrayBuffer:false */ var XLSX = {};
 function make_xlsx_lib(XLSX) {
     XLSX.version = "0.17.5";
@@ -48822,8 +48822,8 @@ if (module.exports && typeof DO_NOT_EXPORT_CODEPAGE === "undefined") module.expo
 });
 
 },{"buffer":"jhUEF"}],"aSHXs":[function(require,module,exports) {
-var Buffer = require("buffer").Buffer;
 var global = arguments[3];
+var Buffer = require("buffer").Buffer;
 /*
 
 JSZip - A Javascript class for generating and reading zip files
