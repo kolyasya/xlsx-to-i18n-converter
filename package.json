@@ -2,6 +2,9 @@
   "name": "xlsx-to-i18n-converter",
   "version": "0.0.1",
   "description": "Tool which converts XLSX document into a set of JSON files for i18n package",
+  "bin": {
+    "xlsx-to-i18n-converter": "./bin/index.js"
+  },
   "targets": {
     "default": {
       "source": "./src/index.js",
