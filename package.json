@@ -1,0 +1,31 @@
+{
+  "name": "xlsx-to-i18n-converter",
+  "version": "0.0.1",
+  "description": "Tool which converts XLSX document into a set of JSON files for i18n package",
+  "main": "dist/index.js",
+  "source": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "parcel watch",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kolyasya/xlsx-to-i18n-converter.git"
+  },
+  "keywords": [
+    "XLSX",
+    "i18n",
+    "converter",
+    "internationalization"
+  ],
+  "author": "Nikolay A.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kolyasya/xlsx-to-i18n-converter/issues"
+  },
+  "homepage": "https://github.com/kolyasya/xlsx-to-i18n-converter#readme",
+  "devDependencies": {
+    "parcel": "^2.7.0"
+  }
+}
