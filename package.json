@@ -5,12 +5,15 @@
   "targets": {
     "default": {
       "source": "./src/index.js",
-      "distDir": "./dist"
+      "distDir": "./dist",
+      "context": "node",
+      "isLibrary": true
     },
     "cli": {
-      "source": "./src/cli/index.js",
-      "distDir": "./cli",
-      "context": "node"
+      "source": "./src/bin/index.js",
+      "distDir": "./bin",
+      "context": "node",
+      "isLibrary": true
     }
   },
   "bin": {
