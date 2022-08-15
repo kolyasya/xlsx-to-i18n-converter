@@ -1,9 +1,11 @@
 # xlsx-to-i18n-converter
 
 Node.js tool which takes XLSX document like:
+
 ![Example](https://github.com/kolyasya/xlsx-to-i18n-converter/blob/main/documentation/images/xlsx-doc-example.png?raw=true)
 
 And converts all its lists into folders with JSON files like:
+
 ![Example](https://github.com/kolyasya/xlsx-to-i18n-converter/blob/main/documentation/images/json-result-example.png?raw=true)
 
 Still under development and testing.
