@@ -16,7 +16,7 @@ Not published to NPM yet, so:
 npm install --save https://github.com/kolyasya/xlsx-to-i18n-converter
 ```
 
-Run like:
+Run like (check `example` folder for XLSX source):
 
 ```
 npx xlsx-to-i18n-converter convert --source ./imports/internationalization/internationalization.xlsx --output ./example/result
