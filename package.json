@@ -7,13 +7,19 @@
       "source": "./src/index.js",
       "distDir": "./dist",
       "context": "node",
-      "isLibrary": true
+      "isLibrary": true,
+      "optimize": false,
+      "includeNodeModules": false,
+      "outputFormat": "commonjs"
     },
     "cli": {
       "source": "./src/bin/index.js",
       "distDir": "./bin",
       "context": "node",
-      "isLibrary": true
+      "isLibrary": true,
+      "optimize": false,
+      "includeNodeModules": false,
+      "outputFormat": "commonjs"
     }
   },
   "bin": {
