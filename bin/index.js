@@ -130,7 +130,6 @@ const $99faf78296dd76aa$var$internationalizationParser = ({ source: source , out
 var $99faf78296dd76aa$export$2e2bcd8739ae039 = $99faf78296dd76aa$var$internationalizationParser;
 
 
-console.log("RUNNING!");
 (0, ($parcel$interopDefault($k3mXF$commander))).command("convert").option("-s, --source <source>", "Path to XLSX document").option("-o, --output <output>", "Path to put JSON files").action((options)=>{
     console.log("CONVERT FILES", options);
     (0, $99faf78296dd76aa$export$2e2bcd8739ae039)({

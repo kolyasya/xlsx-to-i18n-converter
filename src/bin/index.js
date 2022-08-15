@@ -3,8 +3,6 @@ import program from 'commander';
 
 import internationalizationParser from '../index';
 
-console.log('RUNNING!');
-
 program
   .command('convert')
   .option('-s, --source <source>', 'Path to XLSX document')
