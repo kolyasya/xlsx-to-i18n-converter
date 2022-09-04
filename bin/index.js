@@ -131,13 +131,13 @@ var $3c45bcc230241de4$export$2e2bcd8739ae039 = $3c45bcc230241de4$var$internation
 
 
 
-const $c8d53969e53107c7$var$logging = false;
+const $c8d53969e53107c7$var$logging = true;
 const $c8d53969e53107c7$var$getDirectories = (source)=>(0, $k3mXF$fs.readdirSync)(source, {
         withFileTypes: true
     }).filter((dirent)=>dirent.isDirectory()).map((dirent)=>dirent.name);
 const $c8d53969e53107c7$var$getFiles = (source)=>(0, $k3mXF$fs.readdirSync)(source, {
         withFileTypes: true
-    }).filter((dirent)=>!dirent.isDirectory()).map((dirent)=>dirent.name);
+    }).filter((dirent)=>!dirent.isDirectory()).map((dirent)=>dirent.name).filter((filename)=>filename.includes(".json"));
 const $c8d53969e53107c7$var$xlsxBuilder = ({ ...options })=>{
     const { source: source , output: output  } = options;
     $c8d53969e53107c7$var$logging && console.log("XLSX Builder", options);
@@ -146,7 +146,13 @@ const $c8d53969e53107c7$var$xlsxBuilder = ({ ...options })=>{
     languages?.map((language)=>{
         allFilenames.push(...$c8d53969e53107c7$var$getFiles((0, ($parcel$interopDefault($k3mXF$path))).join(source, language)));
     });
+    $c8d53969e53107c7$var$logging && console.log({
+        allFilenames: allFilenames
+    });
     const sheetNames = (0, $k3mXF$lodash.uniq)(allFilenames)?.map((filename)=>(0, ($parcel$interopDefault($k3mXF$path))).basename(filename, ".json"));
+    $c8d53969e53107c7$var$logging && console.log({
+        sheetNames: sheetNames
+    });
     const sheetsData = sheetNames?.map((sheetName)=>{
         const sheetKeys = [];
         languages?.map((language)=>{

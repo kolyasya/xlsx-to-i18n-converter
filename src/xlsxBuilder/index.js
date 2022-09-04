@@ -3,7 +3,7 @@ import path from 'path';
 import { uniq } from 'lodash';
 import xlsx from 'node-xlsx';
 
-const logging = false;
+const logging = true;
 
 const getDirectories = source =>
   readdirSync(source, { withFileTypes: true })
@@ -13,7 +13,8 @@ const getDirectories = source =>
 const getFiles = source =>
   readdirSync(source, { withFileTypes: true })
     .filter(dirent => !dirent.isDirectory())
-    .map(dirent => dirent.name);
+    .map(dirent => dirent.name)
+    .filter(filename => filename.includes('.json'));
 
 const xlsxBuilder = ({ ...options }) => {
   const { source, output } = options;
@@ -28,7 +29,11 @@ const xlsxBuilder = ({ ...options }) => {
     allFilenames.push(...getFiles(path.join(source, language)));
   });
 
+  logging && console.log({ allFilenames });
+
   const sheetNames = uniq(allFilenames)?.map(filename => path.basename(filename, '.json'));
+
+  logging && console.log({ sheetNames });
 
   const sheetsData = sheetNames?.map(sheetName => {
     const sheetKeys = [];
