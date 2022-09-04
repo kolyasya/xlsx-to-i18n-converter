@@ -1,10 +1,8 @@
 var $7jHWQ$lodash = require("lodash");
 var $7jHWQ$nodexlsx = require("node-xlsx");
 var $7jHWQ$fs = require("fs");
+var $7jHWQ$path = require("path");
 
-function $parcel$defineInteropFlag(a) {
-  Object.defineProperty(a, '__esModule', {value: true, configurable: true});
-}
 function $parcel$export(e, n, v, s) {
   Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
 }
@@ -12,12 +10,11 @@ function $parcel$interopDefault(a) {
   return a && a.__esModule ? a.default : a;
 }
 
-$parcel$defineInteropFlag(module.exports);
+$parcel$export(module.exports, "internationalizationParser", () => $3c45bcc230241de4$export$2e2bcd8739ae039);
+$parcel$export(module.exports, "xlsxBuilder", () => $c8d53969e53107c7$export$2e2bcd8739ae039);
 
-$parcel$export(module.exports, "default", () => $99faf78296dd76aa$export$2e2bcd8739ae039);
-
-const $06175f48805edf1b$var$logging = false;
-const $06175f48805edf1b$var$prepareTranslations = ({ translationsSheets: translationsSheets = [] , settings: settings  })=>{
+const $9e996a7000e2d554$var$logging = false;
+const $9e996a7000e2d554$var$prepareTranslations = ({ translationsSheets: translationsSheets = [] , settings: settings  })=>{
     console.log("\uD83C\uDDEC\uD83C\uDDE7  Preparing translations...");
     const translations = {};
     if (translationsSheets?.length) translationsSheets.forEach((sheet)=>{
@@ -36,17 +33,17 @@ const $06175f48805edf1b$var$prepareTranslations = ({ translationsSheets: transla
             translations[`${languageCode}/${sheet?.name}.json`] = newFile;
         }
     });
-    $06175f48805edf1b$var$logging && console.log("\uD83C\uDDEC\uD83C\uDDE7  prepareTranslations result:");
-    $06175f48805edf1b$var$logging && console.dir(translations, {
+    $9e996a7000e2d554$var$logging && console.log("\uD83C\uDDEC\uD83C\uDDE7  prepareTranslations result:");
+    $9e996a7000e2d554$var$logging && console.dir(translations, {
         depth: null
     });
     return translations;
 };
-var $06175f48805edf1b$export$2e2bcd8739ae039 = $06175f48805edf1b$var$prepareTranslations;
+var $9e996a7000e2d554$export$2e2bcd8739ae039 = $9e996a7000e2d554$var$prepareTranslations;
 
 
 
-const $da0fe823c64e5ab1$var$getTranslationsSettings = ({ settingsSheet: settingsSheet  })=>{
+const $ba7dcf679dcacdbf$var$getTranslationsSettings = ({ settingsSheet: settingsSheet  })=>{
     console.log("\uD83C\uDDEC\uD83C\uDDE7  Reading settings sheet...");
     let result = {};
     if (settingsSheet?.data) result = settingsSheet?.data?.reduce((settingsResult, row)=>{
@@ -58,17 +55,17 @@ const $da0fe823c64e5ab1$var$getTranslationsSettings = ({ settingsSheet: settings
     }, {});
     return result;
 };
-var $da0fe823c64e5ab1$export$2e2bcd8739ae039 = $da0fe823c64e5ab1$var$getTranslationsSettings;
+var $ba7dcf679dcacdbf$export$2e2bcd8739ae039 = $ba7dcf679dcacdbf$var$getTranslationsSettings;
 
 
-const $7f1f06d1300297bc$var$readTranslationsFile = ({ xlsxFilePath: xlsxFilePath = ""  })=>{
+const $5f897312276da1f0$var$readTranslationsFile = ({ xlsxFilePath: xlsxFilePath = ""  })=>{
     console.log("\uD83C\uDDEC\uD83C\uDDE7  Reading translations file...");
     if (!xlsxFilePath) throw new Error(`xlsxFilePath is missing`);
     const workSheetsFromFile = (0, ($parcel$interopDefault($7jHWQ$nodexlsx))).parse(xlsxFilePath);
     let translationsSheets = workSheetsFromFile;
     let settings = {};
     if (workSheetsFromFile[0]?.name === "package_settings") {
-        settings = (0, $da0fe823c64e5ab1$export$2e2bcd8739ae039)({
+        settings = (0, $ba7dcf679dcacdbf$export$2e2bcd8739ae039)({
             settingsSheet: workSheetsFromFile[0]
         });
         // get all sheets except first one (settings one)
@@ -79,11 +76,11 @@ const $7f1f06d1300297bc$var$readTranslationsFile = ({ xlsxFilePath: xlsxFilePath
         settings: settings
     };
 };
-var $7f1f06d1300297bc$export$2e2bcd8739ae039 = $7f1f06d1300297bc$var$readTranslationsFile;
+var $5f897312276da1f0$export$2e2bcd8739ae039 = $5f897312276da1f0$var$readTranslationsFile;
 
 
 
-const $d5442b0ad6a05851$var$saveTranslationsAsFiles = ({ translations: translations , pathToSave: pathToSave = `${process.cwd().split(".meteor")[0]}imports/internationalization/translations_test` , settings: settings = {} ,  })=>{
+const $05557e2157678c98$var$saveTranslationsAsFiles = ({ translations: translations , pathToSave: pathToSave = `${process.cwd().split(".meteor")[0]}imports/internationalization/translations_test` , settings: settings = {} ,  })=>{
     const { languages: languages  } = settings;
     languages?.forEach((language)=>{
         const directoryPath = `${pathToSave}/${language}`;
@@ -105,25 +102,115 @@ const $d5442b0ad6a05851$var$saveTranslationsAsFiles = ({ translations: translati
         }
     });
 };
-var $d5442b0ad6a05851$export$2e2bcd8739ae039 = $d5442b0ad6a05851$var$saveTranslationsAsFiles;
+var $05557e2157678c98$export$2e2bcd8739ae039 = $05557e2157678c98$var$saveTranslationsAsFiles;
 
 
-const $99faf78296dd76aa$var$internationalizationParser = ({ source: source , output: output  })=>{
-    const { translationsSheets: translationsSheets , settings: settings  } = (0, $7f1f06d1300297bc$export$2e2bcd8739ae039)({
+const $3c45bcc230241de4$var$internationalizationParser = ({ source: source , output: output  })=>{
+    const { translationsSheets: translationsSheets , settings: settings  } = (0, $5f897312276da1f0$export$2e2bcd8739ae039)({
         xlsxFilePath: source
     });
     console.log("Translation settings:", settings);
-    const translations = (0, $06175f48805edf1b$export$2e2bcd8739ae039)({
+    const translations = (0, $9e996a7000e2d554$export$2e2bcd8739ae039)({
         translationsSheets: translationsSheets,
         settings: settings
     });
-    (0, $d5442b0ad6a05851$export$2e2bcd8739ae039)({
+    (0, $05557e2157678c98$export$2e2bcd8739ae039)({
         translations: translations,
         settings: settings,
         pathToSave: output
     });
 };
-var $99faf78296dd76aa$export$2e2bcd8739ae039 = $99faf78296dd76aa$var$internationalizationParser;
+var $3c45bcc230241de4$export$2e2bcd8739ae039 = $3c45bcc230241de4$var$internationalizationParser;
+
+
+
+
+
+
+const $c8d53969e53107c7$var$logging = false;
+const $c8d53969e53107c7$var$getDirectories = (source)=>(0, $7jHWQ$fs.readdirSync)(source, {
+        withFileTypes: true
+    }).filter((dirent)=>dirent.isDirectory()).map((dirent)=>dirent.name);
+const $c8d53969e53107c7$var$getFiles = (source)=>(0, $7jHWQ$fs.readdirSync)(source, {
+        withFileTypes: true
+    }).filter((dirent)=>!dirent.isDirectory()).map((dirent)=>dirent.name);
+const $c8d53969e53107c7$var$xlsxBuilder = ({ ...options })=>{
+    const { source: source , output: output  } = options;
+    $c8d53969e53107c7$var$logging && console.log("XLSX Builder", options);
+    const languages = $c8d53969e53107c7$var$getDirectories(source);
+    const allFilenames = [];
+    languages?.map((language)=>{
+        allFilenames.push(...$c8d53969e53107c7$var$getFiles((0, ($parcel$interopDefault($7jHWQ$path))).join(source, language)));
+    });
+    const sheetNames = (0, $7jHWQ$lodash.uniq)(allFilenames)?.map((filename)=>(0, ($parcel$interopDefault($7jHWQ$path))).basename(filename, ".json"));
+    const sheetsData = sheetNames?.map((sheetName)=>{
+        const sheetKeys = [];
+        languages?.map((language)=>{
+            const pathToFile = (0, ($parcel$interopDefault($7jHWQ$path))).join(source, language, sheetName + ".json");
+            const fileContent = JSON.parse((0, $7jHWQ$fs.readFileSync)(pathToFile));
+            Object.keys(fileContent)?.map((translationKey)=>{
+                sheetKeys.push(translationKey);
+            });
+        // console.dir(fileContent, { depth: null });
+        // Object.keys(fileContent)?.map(translationKey => {
+        //   sheetValues[translationKey] = {
+        //     ...sheetValues[translationKey],
+        //     [language]: fileContent[translationKey],
+        //   };
+        // });
+        });
+        const uniqSheetKeys = (0, $7jHWQ$lodash.uniq)(sheetKeys);
+        const sheetRows = [
+            [
+                "languages",
+                ...languages
+            ],
+            ...uniqSheetKeys.map((translationKey)=>{
+                const row = [
+                    translationKey
+                ];
+                languages?.map((language)=>{
+                    const pathToFile = (0, ($parcel$interopDefault($7jHWQ$path))).join(source, language, sheetName + ".json");
+                    const fileContent = JSON.parse((0, $7jHWQ$fs.readFileSync)(pathToFile));
+                    const keyValue = fileContent[translationKey] || "";
+                    row.push(keyValue);
+                });
+                return row;
+            }), 
+        ];
+        $c8d53969e53107c7$var$logging && console.log(`Sheet: ${sheetName}`);
+        $c8d53969e53107c7$var$logging && console.table(sheetRows);
+        return {
+            name: sheetName,
+            data: sheetRows
+        };
+    });
+    const finalData = [
+        {
+            name: "package_settings",
+            data: [
+                [
+                    "languages",
+                    ...languages
+                ]
+            ]
+        },
+        ...sheetsData, 
+    ];
+    const finalDataWithAdjustedWidths = finalData?.map((sheet)=>({
+            ...sheet,
+            options: {
+                "!cols": sheet?.data?.[0]?.map((cell)=>({
+                        wpx: 200
+                    }))
+            }
+        }));
+    const xlsxBuffer = (0, ($parcel$interopDefault($7jHWQ$nodexlsx))).build(finalDataWithAdjustedWidths);
+    (0, $7jHWQ$fs.writeFileSync)(output, xlsxBuffer);
+};
+var $c8d53969e53107c7$export$2e2bcd8739ae039 = $c8d53969e53107c7$var$xlsxBuilder;
+
+
 
 
 //# sourceMappingURL=index.js.map

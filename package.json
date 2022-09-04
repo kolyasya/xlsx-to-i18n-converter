@@ -27,7 +27,9 @@
   },
   "scripts": {
     "test": "node ./bin/index.js convert -s ./example/internationalization.xlsx -o ./example/result",
+    "test:build-xlsx": "node ./bin/index.js build-xlsx -s ./example/result -o ./example/imported.xlsx",
     "watch": "parcel watch",
+    "start": "parcel watch",
     "build": "parcel build"
   },
   "repository": {
