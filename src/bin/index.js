@@ -7,6 +7,11 @@ program
   .command('convert')
   .option('-s, --source <source>', 'Path to XLSX document')
   .option('-o, --output <output>', 'Path to put JSON files')
+  .option(
+    '--export-translations',
+    'Generate index.js file with exports of all translation .json files in each language folder',
+    true,
+  )
   .action(options => {
     internationalizationParser(options);
   });

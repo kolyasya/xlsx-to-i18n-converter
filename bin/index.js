@@ -16,6 +16,7 @@ var $99faf78296dd76aa$exports = {};
 
 $parcel$export($99faf78296dd76aa$exports, "internationalizationParser", () => $3c45bcc230241de4$export$2e2bcd8739ae039);
 $parcel$export($99faf78296dd76aa$exports, "xlsxBuilder", () => $c8d53969e53107c7$export$2e2bcd8739ae039);
+$parcel$export($99faf78296dd76aa$exports, "exportAllTranslations", () => $a063bb72418e8c87$export$2e2bcd8739ae039);
 
 const $9e996a7000e2d554$var$logging = false;
 const $9e996a7000e2d554$var$prepareTranslations = ({ translationsSheets: translationsSheets = [] , settings: settings  })=>{
@@ -109,6 +110,33 @@ const $05557e2157678c98$var$saveTranslationsAsFiles = ({ translations: translati
 var $05557e2157678c98$export$2e2bcd8739ae039 = $05557e2157678c98$var$saveTranslationsAsFiles;
 
 
+
+/**
+ * Generate index.js file with all translations jsons files exports
+ */ const $a063bb72418e8c87$var$DEFAULT_EXPORTS_FILE_NAME = "index.js";
+const $a063bb72418e8c87$var$exportAllTranslations = ({ path: path , settings: settings  })=>{
+    const { languages: languages  } = settings;
+    languages.forEach((language)=>{
+        const filesPaths = [];
+        const filesNames = [];
+        const pathToCreate = `${path}/${language}/${$a063bb72418e8c87$var$DEFAULT_EXPORTS_FILE_NAME}`;
+        (0, ($parcel$interopDefault($k3mXF$fs))).readdirSync(`${path}/${language}`).forEach(function(file) {
+            const fileName = file.replace(".json", "");
+            if (file?.indexOf(".json") > -1 && !filesNames?.includes(fileName)) {
+                filesPaths.push(`import ${fileName} from './${file}';`);
+                filesNames.push(fileName);
+            }
+        });
+        const importsPart = filesPaths.join("\n");
+        const exportsPart = `export default { ${filesNames?.join(", ")} }`;
+        const content = `${importsPart}\n${exportsPart}`;
+        console.log(`Create index.js: ${pathToCreate}`);
+        (0, ($parcel$interopDefault($k3mXF$fs))).writeFileSync(pathToCreate, content);
+    });
+};
+var $a063bb72418e8c87$export$2e2bcd8739ae039 = $a063bb72418e8c87$var$exportAllTranslations;
+
+
 const $3c45bcc230241de4$var$internationalizationParser = ({ source: source , output: output  })=>{
     const { translationsSheets: translationsSheets , settings: settings  } = (0, $5f897312276da1f0$export$2e2bcd8739ae039)({
         xlsxFilePath: source
@@ -122,6 +150,10 @@ const $3c45bcc230241de4$var$internationalizationParser = ({ source: source , out
         translations: translations,
         settings: settings,
         pathToSave: output
+    });
+    (0, $a063bb72418e8c87$export$2e2bcd8739ae039)({
+        path: output,
+        settings: settings
     });
 };
 var $3c45bcc230241de4$export$2e2bcd8739ae039 = $3c45bcc230241de4$var$internationalizationParser;
@@ -223,7 +255,8 @@ var $c8d53969e53107c7$export$2e2bcd8739ae039 = $c8d53969e53107c7$var$xlsxBuilder
 
 
 
-(0, ($parcel$interopDefault($k3mXF$commander))).command("convert").option("-s, --source <source>", "Path to XLSX document").option("-o, --output <output>", "Path to put JSON files").action((options)=>{
+
+(0, ($parcel$interopDefault($k3mXF$commander))).command("convert").option("-s, --source <source>", "Path to XLSX document").option("-o, --output <output>", "Path to put JSON files").option("--export-translations", "Generate index.js file with exports of all translation .json files in each language folder", true).action((options)=>{
     (0, $3c45bcc230241de4$export$2e2bcd8739ae039)(options);
 });
 (0, ($parcel$interopDefault($k3mXF$commander))).command("build-xlsx").option("-s, --source <source>", "Path to root translations folder").option("-o, --output <output>", "Path to put XLSX file").action((options)=>{
