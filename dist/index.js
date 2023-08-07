@@ -105,6 +105,16 @@ const $05557e2157678c98$var$saveTranslationsAsFiles = ({ translations: translati
 var $05557e2157678c98$export$2e2bcd8739ae039 = $05557e2157678c98$var$saveTranslationsAsFiles;
 
 
+const $fa229bb05560748e$var$generateAndSaveNamespacesFiles = ({ translationsSheets: translationsSheets , settings: settings  })=>{
+    const { languages: languages  } = settings;
+    const sheetsNames = translationsSheets?.map((sheet)=>sheet?.name);
+    console.log(sheetsNames, languages);
+    console.log("Now need to build up namespace files here");
+    return "test";
+};
+var $fa229bb05560748e$export$2e2bcd8739ae039 = $fa229bb05560748e$var$generateAndSaveNamespacesFiles;
+
+
 const $3c45bcc230241de4$var$internationalizationParser = ({ source: source , output: output  })=>{
     const { translationsSheets: translationsSheets , settings: settings  } = (0, $5f897312276da1f0$export$2e2bcd8739ae039)({
         xlsxFilePath: source
@@ -118,6 +128,10 @@ const $3c45bcc230241de4$var$internationalizationParser = ({ source: source , out
         translations: translations,
         settings: settings,
         pathToSave: output
+    });
+    (0, $fa229bb05560748e$export$2e2bcd8739ae039)({
+        translationsSheets: translationsSheets,
+        settings: settings
     });
 };
 var $3c45bcc230241de4$export$2e2bcd8739ae039 = $3c45bcc230241de4$var$internationalizationParser;
